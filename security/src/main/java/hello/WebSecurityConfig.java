@@ -10,9 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
+    
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+    	 System.out.println("esta carregando");
+    	http
             .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
@@ -23,9 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .permitAll();
+    	 System.out.println("carregou");
     }
-
-    @Autowired
+	
+	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
